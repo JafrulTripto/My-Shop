@@ -1,9 +1,25 @@
 import React, { Component } from 'react'
-import AddProduct from '../../../Components/Pages/ProductPage/AddProduct'
+import AddSupplier from '../../../Components/Pages/Supplier/AddSupplier';
 import './Style.css';
 
-export default class Products extends Component {
+
+export default class Supplier extends Component {
+
+    state = {
+        sup_Name: '',
+        email:'',
+        contact_person:'',
+        contact_person_phone:'',
+        category_id:null
+       
+    }
+    inuptChangeHandler = (event) => {
+        event.preventDefault();
+        this.setState({ [event.target.name]: event.target.value });
+    }
+
     render() {
+        console.log(this.state);
         return (
             <div className="container">
                 <div className="row">
@@ -15,9 +31,9 @@ export default class Products extends Component {
                         </div>
                     </div>
                 </div>
-                <button type="button" id="ContainerBody" className="btn btn-primary btn-lg btn-block"
-                    data-toggle="modal" data-target="#addProductModal">ADD NEW PRODUCT</button>
-                <AddProduct />
+                <button type="button" id="ContainerBody"  className="btn btn-primary btn-lg btn-block"
+                    data-toggle="modal" data-target="#addSupplierModal">ADD NEW SUPPLIER</button>
+                <AddSupplier changeInput = {this.inuptChangeHandler}/>
             </div>
         )
     }

@@ -9,7 +9,9 @@ import Dashboard from '../../Components/Pages/Dashboard';
 import Page2 from '../../Components/Pages/Page2';
 import ProductSettings from '../../Components/Pages/ProductSettings/ProductSettigs';
 import Products from './Modules/Products'
+import Suppliers from './Modules/Supplier'
 import Styles from './MainLayout.module.css';
+
 
 class MainLayout extends Component {
 
@@ -46,7 +48,16 @@ class MainLayout extends Component {
                 path: '/products',
                 component: Products,
                 itemName: 'Products',
-                icon: 'list_alt',
+                icon: 'archive',
+                subItems: []
+
+            },
+            {
+                id: "item004",
+                path: '/suppliers',
+                component: Suppliers,
+                itemName: 'Suppliers',
+                icon: 'home_work',
                 subItems: []
 
             },
