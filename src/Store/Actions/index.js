@@ -21,3 +21,13 @@ export const fetchProductCategory = () => {
        
     }
 }
+export const fetchSuppliers = () => {
+    return async (dispatch) => {
+        await Axios.get('http://localhost:4000/getSupplier').then(response => {
+            dispatch({ type : 'FETCH_SUPPLIER', payload: response.data})
+        }).catch(err => {
+            console.log(err);
+        })
+       
+    }
+}

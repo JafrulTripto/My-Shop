@@ -45,7 +45,7 @@ function AddSupplier(props) {
                                     <select className="form-control" name="category_id" id="exampleFormControlSelect1" onChange={props.changeInput}>
                                     <option >Select...</option>
                                         {props.categories.map((category, index) =>{
-                                            return <option value={index} key={index}>{category.categoryName}</option>     
+                                            return <option value={category.id} key={index}>{category.categoryName}</option>     
                                         })}
                                        
                                     </select>
@@ -56,7 +56,7 @@ function AddSupplier(props) {
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={props.addCategory}>Save changes</button>
+                        <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={props.addSupplier}>Save changes</button>
                     </div>
                 </div>
             </div>
