@@ -57,12 +57,6 @@ class ProductCategory extends Component {
         toast.warn("Wow so easy !");
     }
 
-
-   
-    componentDidMount() {
-        this.props.fetchProductCategory();
-    }
-
     render() {
         console.log(this.props.categories)
         return (

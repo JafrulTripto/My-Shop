@@ -11,6 +11,7 @@ import ProductSettings from '../../Components/Pages/ProductSettings/ProductSetti
 import Products from './Modules/Products'
 import Suppliers from './Modules/Supplier'
 import Styles from './MainLayout.module.css';
+import SupplierDetails from '../../Components/Pages/Supplier/SupplierDetails';
 
 
 class MainLayout extends Component {
@@ -70,7 +71,7 @@ class MainLayout extends Component {
     toggleSidebar = () => {
         this.state.toggleButton ? this.setState({ toggleButton: false }) : this.setState({ toggleButton: true })
     }
-    componentDidMount(){
+    componentDidMount() {
         this.props.fetchProductUnit();
         this.props.fetchProductCategory();
     }
@@ -94,13 +95,14 @@ class MainLayout extends Component {
                         }) : <Route path={item.path} exact key={index} component={item.component} />
                     })
                     }
+                    <Route path='/suppliers/:id' exact component={SupplierDetails}/>
                 </div>
             </Aux>
         )
     }
 }
 
-export default connect(null, { 
+export default connect(null, {
     fetchProductUnit,
     fetchProductCategory
 
