@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 
 
@@ -15,20 +15,20 @@ export default function ShowSuppliers(props) {
                         <th scope="col">Email</th>
                         <th scope="col">Contact Person</th>
                         <th scope="col">Phone Number</th>
-                        <th scope="col">Categories</th>
-                        <th scope="col">Details</th>
+                        {/* <th scope="col">Categories</th> */}
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     {props.supplier.length !== 0 ? props.supplier.map((supplier, index) => {
                         return (
-                                <tr key={index}>
-                                    <th scope="row">{supplier.id}</th>
-                                    <td>{supplier.sup_Name}</td>
-                                    <td>{supplier.email}</td>
-                                    <td>{supplier.contact_person}</td>
-                                    <td>{supplier.contact_person_phone}</td>
-                                    {supplier.Product_Categories.map((category, index) => {
+                            <tr key={index}>
+                                <th scope="row">{supplier.id}</th>
+                                <td>{supplier.sup_Name}</td>
+                                <td>{supplier.email}</td>
+                                <td>{supplier.contact_person}</td>
+                                <td>{supplier.contact_person_phone}</td>
+                                {/* {supplier.Product_Categories.map((category, index) => {
                                         return (
                                             <td key={index}>
                                                 <ul>
@@ -36,9 +36,11 @@ export default function ShowSuppliers(props) {
                                                 </ul>
                                             </td>
                                         )
-                                    })}
-                                    <td><Link to={'/suppliers/' + index}>Details...</Link></td>
-                                </tr>
+                                    })} */}
+                                <td>
+                                    <NavLink className="badge badge-pill badge-info" to={'/suppliers/' + index}>Details</NavLink>
+                                </td>
+                            </tr>
                         )
 
                     }) : <tr >

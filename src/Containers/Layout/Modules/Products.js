@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import AddProduct from '../../../Components/Pages/ProductPage/AddProduct'
-import './Style.css';
+import '../../../Style.css'
 
 export default class Products extends Component {
     render() {
