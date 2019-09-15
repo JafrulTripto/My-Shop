@@ -42,7 +42,8 @@ function AddSupplier(props) {
                                 
                                 <div className="col-lg-6">
                                 <label className="text-dark"  htmlFor="Category"><strong>Select Category</strong></label>
-                                    <select className="form-control" name="category_id" id="exampleFormControlSelect1" onChange={props.changeInput}>
+                                    <select className="form-control" name="category_id" id="exampleFormControlSelect1" 
+                                    onChange={props.changeInput}>
                                     <option >Select...</option>
                                         {props.categories.map((category, index) =>{
                                             return <option value={category.id} key={index}>{category.categoryName}</option>     

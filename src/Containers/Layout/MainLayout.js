@@ -11,7 +11,7 @@ import ProductSettings from '../../Components/Pages/ProductSettings/ProductSetti
 import Products from './Modules/Products'
 import Suppliers from './Modules/Supplier'
 import Styles from './MainLayout.module.css';
-import SupplierDetails from '../../Components/Pages/Supplier/SupplierDetails';
+import SupplierDetails from './Modules/SupplierDetails';
 
 
 class MainLayout extends Component {

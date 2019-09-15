@@ -33,6 +33,18 @@ class SupplierDetails extends Component {
             console.log(err);
         })
     }
+    deleteSupplierHandler = () => {
+        let supplier_id = {
+            id:this.props.suppliers[this.props.match.params.id].id
+        }
+        Axios.post('http://localhost:4000/deleteSupplier', supplier_id).then(response => {
+            this.props.history.push({pathname:'/suppliers'})
+            toast.error("Product Unit Successfully Deleted");
+        }).catch(err => {
+            console.log(err);
+        })
+    }
+    
 
 
     componentDidMount() {
@@ -56,7 +68,6 @@ class SupplierDetails extends Component {
                     <div className="card border-info mb-3">
                         <div className="card-header bg-info text-white "><h3>{this.props.suppliers[index].sup_Name}</h3></div>
                         <div className="card-body ">
-
                             <div className="row ">
                                 <div className="col-lg-6 p-3 mx-3" style={style}>
                                     <h5 className="card-title text-info ">Supplier Details :</h5>
@@ -64,7 +75,8 @@ class SupplierDetails extends Component {
                                     <p className="m-1"><strong>Company email : </strong>{this.props.suppliers[index].email}</p>
                                     <p className="m-1"><strong>Contact Person : </strong>{this.props.suppliers[index].contact_person}</p>
                                     <p className="m-1"><strong>Contact Person Phone: </strong>{this.props.suppliers[index].contact_person_phone}</p>
-                                    <div className="m-1"><strong>Supplier Categories: </strong>{this.props.suppliers[index].Product_Categories.map((category, index) => {
+                                    <div className="m-1"><strong>Supplier Categories: 
+                                    </strong>{this.props.suppliers[index].Product_Categories.map((category, index) => {
                                         return (
                                             <span key={index} className="badge badge-pill badge-danger mx-1">{category.categoryName}</span>
                                         )
@@ -72,15 +84,19 @@ class SupplierDetails extends Component {
                                 </div>
 
                                 <div className="col-lg-5 p-3 mx-3" style={style}>
-                                    <button type="button" data-toggle="modal" data-target="#CategoryModal" id="ContainerBody" className="btn btn-outline-info btn-block mt-4">ADD CATEGORY</button>
+                                    <button type="button" data-toggle="modal" data-target="#CategoryModal" 
+                                    id="ContainerBody" className="btn btn-outline-info btn-block mt-4">ADD CATEGORY</button>
                                     <button type="button" id="ContainerBody" className="btn btn-outline-dark btn-block">EDIT SUPPLIER INFO </button>
-                                    <button type="button" id="ContainerBody" className="btn btn-outline-danger btn-block">DELETE SUPPLIER </button>
+                                    <button type="button" id="ContainerBody" className="btn btn-outline-danger btn-block"
+                                    onClick={ this.deleteSupplierHandler }>DELETE SUPPLIER </button>
                                 </div>
-                                <div className="modal fade " id="CategoryModal" tabIndex="-1" role="dialog" aria-labelledby="addSupplierModalTitle" aria-hidden="true">
+                                <div className="modal fade " id="CategoryModal" tabIndex="-1" role="dialog" 
+                                aria-labelledby="addSupplierModalTitle" aria-hidden="true">
                                     <div className="modal-dialog modal-dialog-centered" role="document">
                                         <div className="modal-content">
                                             <div className="modal-header bg-dark">
-                                                <h5 className="modal-title text-white" id="exampleModalLongTitle">Add Category For {this.props.suppliers[index].sup_Name}</h5>
+                                                <h5 className="modal-title text-white" id="exampleModalLongTitle">
+                                                    Add Category For {this.props.suppliers[index].sup_Name}</h5>
                                                 <button type="button" className="close text-white" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -89,7 +105,8 @@ class SupplierDetails extends Component {
                                                 <form>
 
                                                     <label className="text-dark" htmlFor="Category"><strong>Select Category</strong></label>
-                                                    <select className="form-control" name="category_id" id="exampleFormControlSelect1" onChange={this.handleChange}>
+                                                    <select className="form-control" name="category_id" id="exampleFormControlSelect1" 
+                                                    onChange={this.handleChange}>
                                                         <option >Select...</option>
                                                         {this.props.categories.map((category, index) => {
                                                             return <option value={category.id} key={index}>{category.categoryName}</option>
