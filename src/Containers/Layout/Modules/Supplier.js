@@ -31,7 +31,7 @@ class Supplier extends Component {
             contact_person_phone: this.state.contact_person_phone,
             category_id: this.state.category_id
         }
-        Axios.post('http://localhost:4000/addSupplier', supplier).then(response => {
+        Axios.post(process.env.REACT_APP_SERVER+'addSupplier', supplier).then(response => {
             toast.info("New Product Unit Added");
             this.props.fetchSuppliers();
             this.setState({

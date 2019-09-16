@@ -8,7 +8,7 @@ import { Route } from 'react-router-dom';
 import Dashboard from '../../Components/Pages/Dashboard';
 import Page2 from '../../Components/Pages/Page2';
 import ProductSettings from '../../Components/Pages/ProductSettings/ProductSettigs';
-import Products from './Modules/Products'
+import Products from './Modules/Products/Products'
 import Suppliers from './Modules/Supplier'
 import Styles from './MainLayout.module.css';
 import SupplierDetails from './Modules/SupplierDetails';
@@ -78,7 +78,7 @@ class MainLayout extends Component {
 
 
     render() {
-
+console.log(process.env);
         return (
             <Aux>
                 <Navbar toggle={this.toggleSidebar} />

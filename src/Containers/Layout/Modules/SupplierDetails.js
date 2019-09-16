@@ -23,7 +23,7 @@ class SupplierDetails extends Component {
             supplier_id:this.props.suppliers[this.props.match.params.id].id,
             category_id: this.state.category_id
         }
-        Axios.post('http://localhost:4000/addSupplierCategory', supplier).then(response => {
+        Axios.post(process.env.REACT_APP_SERVER+'addSupplierCategory', supplier).then(response => {
             toast.info("New Category For This Supplier Added");
             this.props.fetchSuppliers();
             this.setState({
@@ -37,7 +37,7 @@ class SupplierDetails extends Component {
         let supplier_id = {
             id:this.props.suppliers[this.props.match.params.id].id
         }
-        Axios.post('http://localhost:4000/deleteSupplier', supplier_id).then(response => {
+        Axios.post(process.env.REACT_APP_SERVER+'deleteSupplier', supplier_id).then(response => {
             this.props.history.push({pathname:'/suppliers'})
             toast.error("Product Unit Successfully Deleted");
         }).catch(err => {
@@ -55,7 +55,7 @@ class SupplierDetails extends Component {
     }
 
     render() {
-        
+        console.log(this.props.suppliers)
 
         let index = this.props.match.params.id;
         var style = {

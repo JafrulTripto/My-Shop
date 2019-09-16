@@ -32,7 +32,7 @@ class ProductCategory extends Component {
         let category = {
             categoryName: this.state.categoryName
         }
-        Axios.post('http://localhost:4000/addCategory', category).then(response => {
+        Axios.post(process.env.REACT_APP_SERVER+'addCategory', category).then(response => {
             this.props.fetchProductCategory();
             toast.info("New Product Unit Added");
         }).catch(err => {
@@ -45,7 +45,7 @@ class ProductCategory extends Component {
         let categoryId = {
             id: key
         }
-        Axios.post('http://localhost:4000/deleteCategory', categoryId).then(response => {
+        Axios.post(process.env.REACT_APP_SERVER+'deleteCategory', categoryId).then(response => {
             this.props.fetchProductCategory();
             toast.danger("Product Category Successfully Deleted");
         }).catch(err => {
@@ -58,7 +58,7 @@ class ProductCategory extends Component {
     }
 
     render() {
-        console.log(this.props.categories)
+        console.log(this.props)
         return (
             <div className="col-lg-6 col-md-12 col-sm-12">
                 <div className="card">
@@ -85,7 +85,7 @@ class ProductCategory extends Component {
 
 const mapStateToProps = (state) => {
     return{
-        categories: state.data.categories
+        categories: state.data.categories,
     }
 }
 

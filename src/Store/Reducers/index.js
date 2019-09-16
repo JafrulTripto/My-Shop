@@ -4,5 +4,5 @@ import ModuleReducers from './ModuleReducers'
 
 export default combineReducers({
     data: setupReducer,
-    supplierData:ModuleReducers
+    supplierData:ModuleReducers,
 });
