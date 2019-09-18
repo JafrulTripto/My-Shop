@@ -1,54 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import Axios from 'axios';
-import { toast } from 'react-toastify';
 import { fetchSuppliers } from '../../../Store/Actions';
 import AddSupplier from '../../../Components/Pages/Supplier/AddSupplier';
 import ShowSuppliers from '../../../Components/Pages/Supplier/ShowSuppliers';
 import '../../../Style.css'
-
-
 class Supplier extends Component {
 
     state = {
-        sup_Name: '',
-        email: '',
-        contact_person: '',
-        contact_person_phone: '',
-        category_id: null,
-        search: ''
-
+        search: '',
     }
-    inuptChangeHandler = (event) => {
-        event.preventDefault();
-        this.setState({ [event.target.name]: event.target.value });
-    }
-    postSupplierHandler = () => {
-        let supplier = {
-            sup_Name: this.state.sup_Name,
-            email: this.state.email,
-            contact_person: this.state.contact_person,
-            contact_person_phone: this.state.contact_person_phone,
-            category_id: this.state.category_id
-        }
-        Axios.post('http://localhost:4000/addSupplier', supplier).then(response => {
-            toast.info("New Product Unit Added");
-            this.props.fetchSuppliers();
-            this.setState({
-                sup_Name: '',
-                email: '',
-                contact_person: '',
-                contact_person_phone: '',
-                category_id: null
-            })
-        }).catch(err => {
-            console.log(err);
-        })
-    }
-
-
-
-
 
     componentDidMount(prevProp, prevState) {
         if (this.props.suppliers.length === 0) {
@@ -63,7 +23,6 @@ class Supplier extends Component {
         let filteredSuppliers = this.props.suppliers.filter(supplier => {
             return supplier.sup_Name.toLowerCase().indexOf(this.state.search) !== -1;
         });
-        //console.log(this.props.suppliers)
         return (
             <div className="container">
                 <div className="row">
@@ -75,8 +34,7 @@ class Supplier extends Component {
                 </div>
                 <button type="button" id="ContainerBody" className="btn btn-dark btn-lg btn-block"
                     data-toggle="modal" data-target="#addSupplierModal">ADD NEW SUPPLIER</button>
-                <AddSupplier changeInput={this.inuptChangeHandler}
-                    addSupplier={this.postSupplierHandler} />
+                <AddSupplier />
                 <ShowSuppliers supplier={filteredSuppliers} />
             </div>
         )
