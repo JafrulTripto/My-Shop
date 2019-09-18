@@ -38,6 +38,7 @@ class SupplierDetails extends Component {
             id:this.props.suppliers[this.props.match.params.id].id
         }
         Axios.post(process.env.REACT_APP_SERVER+'deleteSupplier', supplier_id).then(response => {
+            this.props.fetchSuppliers();
             this.props.history.push({pathname:'/suppliers'})
             toast.error("Product Unit Successfully Deleted");
         }).catch(err => {
