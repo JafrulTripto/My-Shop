@@ -23,7 +23,7 @@ export default function ShowSuppliers(props) {
                     {props.supplier.length !== 0 ? props.supplier.map((supplier, index) => {
                         return (
                             <tr key={index}>
-                                <th scope="row">{supplier.id}</th>
+                                <th scope="row">{index +1}</th>
                                 <td>{supplier.sup_Name}</td>
                                 <td>{supplier.email}</td>
                                 <td>{supplier.contact_person}</td>

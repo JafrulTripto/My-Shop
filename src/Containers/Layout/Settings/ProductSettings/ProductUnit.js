@@ -62,7 +62,7 @@ class ProductUnit extends Component {
     
 
     render() {
-        console.log(this.props.units)
+       
         return (
             
             <div className="col-lg-6 col-md-12 col-sm-12">

@@ -58,7 +58,10 @@ class ProductCategory extends Component {
     }
 
     render() {
+<<<<<<< HEAD
         console.log(this.props)
+=======
+>>>>>>> dev
         return (
             <div className="col-lg-6 col-md-12 col-sm-12">
                 <div className="card">

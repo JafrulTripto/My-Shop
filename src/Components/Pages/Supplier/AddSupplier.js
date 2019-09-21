@@ -3,26 +3,14 @@ import { connect } from 'react-redux';
 import Axios from 'axios';
 import { toast } from 'react-toastify';
 import { fetchSuppliers } from '../../../Store/Actions';
+import {formValid} from '../../../Helpers/Helper'
+
 
 
 
 const emailRegex = RegExp(
     /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 );
-
-const formValid = ({ formErrors, form_input }) => {
-    let valid = true;
-
-    Object.values(formErrors).forEach(val => {
-        val.length > 0 && (valid = false);
-    });
-
-    Object.values(form_input).forEach(val => {
-        val.length === 0 && (valid = false)
-    });
-    return valid;
-}
-
 class AddSupplier extends Component {
 
 
@@ -86,13 +74,15 @@ class AddSupplier extends Component {
         event.preventDefault();
 
         let supplier = {
-            sup_Name: this.state.sup_Name,
-            email: this.state.email,
-            contact_person: this.state.contact_person,
-            contact_person_phone: this.state.contact_person_phone,
-            category_id: this.state.category_id
+            sup_Name: this.state.form_input.sup_Name,
+            email: this.state.form_input.email,
+            contact_person: this.state.form_input.contact_person,
+            contact_person_phone: this.state.form_input.contact_person_phone,
+            category_id: this.state.form_input.category_id
         }
-        if (formValid(this.state)) {
+        // this.props.formValidation(this.state.formErrors,this.state.form_input)
+        // console.log(this.props.isValid)
+        if ( formValid(this.state)) {
             Axios.post(process.env.REACT_APP_SERVER + 'addSupplier', supplier).then(response => {
                 toast.info("New Product Unit Added");
                 this.props.fetchSuppliers();
@@ -106,7 +96,6 @@ class AddSupplier extends Component {
                     }
                 })
                 window.$("#addSupplierModal").modal("hide");
-                console.log(this.state)
                 window.$('#addSupplierModal').on('hidden.bs.modal', function (e) {
                     window.$(this).removeData();
                 });
@@ -119,14 +108,13 @@ class AddSupplier extends Component {
         else {
 
             this.setState({ submitError: "Please fill all the fields" })
+            
         }
-
 
     }
 
     render() {
 
-        console.log(this.state)
         const { formErrors } = this.state;
         return (
             <div className="modal fade " id="addSupplierModal"
@@ -187,17 +175,18 @@ class AddSupplier extends Component {
                                         </select>
                                         {formErrors.category_id.length > 0 && (<div className="invalid-feedback"> {formErrors.category_id}</div>)}
                                     </div>
-                                    {/* {this.state.submitError ? (<div className="alert alert-danger" role="alert">
-                                        {this.state.submitError}
-                                    </div>) : null} */}
 
                                 </div>
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
                                     <button type="submit" className="btn btn-primary" >Save changes</button>
                                 </div>
+                                {this.state.submitError ? (<div className="alert alert-danger" role="alert">
+                                        {this.state.submitError}
+                                    </div>) : null}
 
                             </form>
+                           
                         </div>
 
                     </div>
@@ -211,6 +200,7 @@ class AddSupplier extends Component {
 const mapStateToProps = (state) => {
     return {
         categories: state.data.categories,
+       
     }
 }
 
